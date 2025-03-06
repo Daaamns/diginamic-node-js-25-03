@@ -1,4 +1,4 @@
-const { apiResponse } = require('./11_async');
+const { apiResponse } = require("./11_async");
 
 /**
  * Utilisez la fonction Promise.all pour exécuter 3 appels API en parallèle
@@ -14,8 +14,17 @@ const { apiResponse } = require('./11_async');
  *
  * documentation: https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
  */
+const parallel = async () => {
+  const urls = [
+    "https://jsonplaceholder.typicode.com/todos/1",
+    "https://jsonplaceholder.typicode.com/todos/2",
+    "https://jsonplaceholder.typicode.com/todos/3",
+  ];
+  const promises = urls.map((url) => apiResponse(url));
 
+  const results = await Promise.all(promises);
 
-const parallel = undefined
+  return results;
+};
 
 module.exports = { parallel };
